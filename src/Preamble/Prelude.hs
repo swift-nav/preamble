@@ -19,6 +19,7 @@ module Preamble.Prelude
 import BasicPrelude as Exports
 import Control.Lens as Exports hiding (uncons, (.=), (<.>))
 import Data.Text
+import Safe         as Exports (headMay, initMay, tailMay)
 
 -- | maybe with hanging function.
 --

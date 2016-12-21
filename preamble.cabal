@@ -36,6 +36,7 @@ library
                      , monad-logger
                      , mtl
                      , resourcet
+                     , safe
                      , template-haskell
                      , text
                      , text-manipulate
