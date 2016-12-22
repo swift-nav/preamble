@@ -1,6 +1,7 @@
 name:                  preamble
 version:               VERSION
 synopsis:              Yet another prelude.
+description:           A prelude built on basic-prelude.
 homepage:              https://github.com/swift-nav/preamble
 license:               MIT
 author:                Swift Navigation Inc.
@@ -9,8 +10,6 @@ copyright:             Copyright (C) 2016 Swift Navigation, Inc.
 category:              Prelude
 build-type:            Simple
 cabal-version:         >= 1.22
-description:
-  Yet another prelude, built on BasicPrelude.
 
 library
   hs-source-dirs:      src
@@ -48,8 +47,7 @@ executable shake-preamble
   main-is:             Shakefile.hs
   ghc-options:         -threaded -rtsopts -with-rtsopts=-N -Wall
   build-depends:       base >= 4.8 && < 4.9
-                     , basic-prelude
-                     , shake
+                     , shakers
   default-language:    Haskell2010
 
 source-repository head
