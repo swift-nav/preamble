@@ -27,7 +27,7 @@ library
   default-language:    Haskell2010
   ghc-options:         -Wall
   build-depends:       aeson
-                     , base >= 4.8 && < 5
+                     , base >= 4.8 && < 4.9
                      , basic-prelude
                      , exceptions
                      , fast-logger
@@ -47,7 +47,7 @@ library
 executable shake-preamble
   main-is:             Shakefile.hs
   ghc-options:         -threaded -rtsopts -with-rtsopts=-N -Wall
-  build-depends:       base >= 4.8 && < 5
+  build-depends:       base >= 4.8 && < 4.9
                      , basic-prelude
                      , shake
   default-language:    Haskell2010
