@@ -23,7 +23,7 @@ main = shakeMain $ do
 
   -- | Cabal rules.
   --
-  cabalRules "shakers.cabal"
+  cabalRules "preamble.cabal"
 
   -- | Stack rules.
   --
