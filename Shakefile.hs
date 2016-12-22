@@ -39,6 +39,16 @@ fakeDir = buildDir </> "fake"
 fd :: FilePath -> FilePath
 fd = (fakeDir </>)
 
+-- | Meta directory where "virtual" files are kept.
+--
+metaDir :: FilePath
+metaDir = buildDir </> "meta"
+
+-- | Meta directory path builder.
+--
+md :: FilePath -> FilePath
+md = (metaDir </>)
+
 -- | Remove right excess on string.
 --
 rstrip :: String -> String
@@ -102,6 +112,15 @@ fake pats target act = do
   phony target $
     need [ fd target ]
 
+-- | Use a meta file to keep track of vitual content
+--
+meta :: FilePath -> Action String -> Rules ()
+meta target act = do
+  md target %> \out -> do
+    alwaysRerun
+    content <- act
+    writeFileChanged out content
+
 -- | Preprocess a file with m4
 --
 preprocess :: FilePattern -> FilePath -> Action [(String, String)] -> Rules ()
@@ -123,9 +142,15 @@ globalRules = do
         , "src//*.hs"
         ]
 
+  -- | version
+  --
+  meta "version"
+    version
+
   -- | preamble.cabal
   --
   preprocess "preamble.cabal" "preamble.cabal.m4" $ do
+    need [ md "version" ]
     v <- version
     return [ ("VERSION", v) ]
 
