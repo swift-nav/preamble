@@ -115,7 +115,7 @@ fake pats target act = do
 -- | Use a meta file to keep track of vitual content
 --
 meta :: FilePath -> Action String -> Rules ()
-meta target act = do
+meta target act =
   md target %> \out -> do
     alwaysRerun
     content <- act
