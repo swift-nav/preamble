@@ -8,7 +8,7 @@ maintainer:            Mark Fine <dev@swiftnav.com>
 copyright:             Copyright (C) 2016 Swift Navigation, Inc.
 category:              Prelude
 build-type:            Simple
-cabal-version:         >= 1.10
+cabal-version:         >= 1.22
 description:
   Yet another prelude, built on BasicPrelude.
 
@@ -27,7 +27,7 @@ library
   default-language:    Haskell2010
   ghc-options:         -Wall
   build-depends:       aeson
-                     , base >= 4.7 && < 5
+                     , base >= 4.8 && < 5
                      , basic-prelude
                      , exceptions
                      , fast-logger
@@ -46,8 +46,8 @@ library
 
 executable shake-preamble
   main-is:             Shakefile.hs
-  ghc-options:         -threaded -rtsopts -with-rtsopts=-N -Wall -O2
-  build-depends:       base >= 4.7 && < 5
+  ghc-options:         -threaded -rtsopts -with-rtsopts=-N -Wall
+  build-depends:       base >= 4.8 && < 5
                      , basic-prelude
                      , shake
   default-language:    Haskell2010

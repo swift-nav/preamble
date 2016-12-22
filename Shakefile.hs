@@ -158,7 +158,7 @@ globalRules = do
   phony "publish" $ do
     need [ "preamble.cabal" ]
     stack [ "sdist" ]
-    stack [ "upload", "." ]
+    stack [ "upload", ".", "--no-signature" ]
 
   -- | clean
   --
