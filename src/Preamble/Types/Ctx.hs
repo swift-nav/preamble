@@ -33,6 +33,7 @@ type MonadCtx c m =
   , MonadReader c m
   , MonadLogger m
   , MonadCatch m
+  , MonadMask m
   , MonadResource m
   , HasCtx c
   )
