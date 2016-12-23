@@ -4,6 +4,7 @@ synopsis:              Yet another prelude.
 description:           A prelude built on basic-prelude.
 homepage:              https://github.com/swift-nav/preamble
 license:               MIT
+license-file:          LICENSE
 author:                Swift Navigation Inc.
 maintainer:            Mark Fine <dev@swiftnav.com>
 copyright:             Copyright (C) 2016 Swift Navigation, Inc.
