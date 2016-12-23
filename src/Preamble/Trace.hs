@@ -18,10 +18,11 @@ import           Control.Monad.Logger
 import           Data.Aeson
 import           Data.Aeson.Encode
 import qualified Data.HashMap.Strict    as M
+import           Data.Text              hiding (singleton)
 import qualified Data.Text.Lazy         as LT
 import           Data.Text.Lazy.Builder
 import           Data.Time
-import           Preamble.Prelude
+import           Preamble.Prelude       hiding (null)
 import           Preamble.Types
 import           System.Log.FastLogger
 
@@ -55,9 +56,9 @@ nullTrace _loc _source _level _s =
 --
 trace :: MonadCtx c m => (Text -> m ()) -> Text -> Pairs -> m ()
 trace logN e ps = do
-  t <- liftIO getCurrentTime
-  let preamble = [ "event" .= e, "time" .= t ]
   p <- view cPreamble
+  t <- liftIO getCurrentTime
+  let preamble = bool [ "event" .= e, "time" .= t ] [ "time" .= t ] $ null e
   logN $ LT.toStrict $ toLazyText $ (<> singleton '\n') $
     encodeToTextBuilder $ Object $ M.fromList $ preamble <> p <> ps
 
