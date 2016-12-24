@@ -10,7 +10,6 @@ module Preamble.Types.Ctx where
 import Control.Monad.Catch
 import Control.Monad.Logger
 import Control.Monad.Reader
-import Control.Monad.Trans.Resource
 import Preamble.Prelude
 import Preamble.Types.Alias
 
@@ -28,13 +27,10 @@ data Ctx = Ctx
 $(makeClassy ''Ctx)
 
 type MonadCtx c m =
-  ( MonadBaseControl IO m
-  , MonadIO m
+  ( MonadMain m
   , MonadReader c m
   , MonadLogger m
   , MonadCatch m
   , MonadThrow m
-  , MonadMask m
-  , MonadResource m
   , HasCtx c
   )

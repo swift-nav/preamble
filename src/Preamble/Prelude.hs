@@ -5,6 +5,7 @@
 --
 module Preamble.Prelude
   ( module Exports
+  , runResourceT
   , maybe'
   , maybe_
   , eitherThrowIO
@@ -16,10 +17,11 @@ module Preamble.Prelude
   , (-:-)
   ) where
 
-import BasicPrelude as Exports
-import Control.Lens as Exports hiding (uncons, (.=), (<.>))
+import BasicPrelude                 as Exports
+import Control.Lens                 as Exports hiding (uncons, (.=), (<.>))
+import Control.Monad.Trans.Resource
 import Data.Text
-import Safe         as Exports (headMay, initMay, tailMay)
+import Safe                         as Exports (headMay, initMay, tailMay)
 
 -- | maybe with hanging function.
 --
