@@ -21,17 +21,17 @@ type Pairs = [(Text, Value)]
 --
 type Trace = Loc -> LogSource -> LogLevel -> LogStr -> IO ()
 
--- | MonadBaseControlIO
+-- | MonadControl
 --
-type MonadBaseControlIO m =
+type MonadControl m =
   ( MonadBaseControl IO m
   , MonadIO m
+  , MonadMask m
   )
 
 -- | MonadMain
 --
 type MonadMain m =
-  ( MonadBaseControlIO m
+  ( MonadControl m
   , MonadResource m
-  , MonadMask m
   )
