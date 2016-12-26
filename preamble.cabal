@@ -23,6 +23,7 @@ library
                      , Preamble.Types
                      , Preamble.Types.Alias
                      , Preamble.Types.Ctx
+                     , Preamble.Types.Orphan
                      , Preamble.Types.Trans
   default-language:    Haskell2010
   ghc-options:         -Wall
