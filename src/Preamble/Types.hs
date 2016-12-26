@@ -4,6 +4,7 @@ module Preamble.Types
   ( module Exports
   ) where
 
-import Preamble.Types.Alias as Exports
-import Preamble.Types.Ctx   as Exports
-import Preamble.Types.Trans as Exports
+import Preamble.Types.Alias  as Exports
+import Preamble.Types.Ctx    as Exports
+import Preamble.Types.Orphan as Exports ()
+import Preamble.Types.Trans  as Exports
