@@ -17,9 +17,10 @@ module Preamble.Prelude
   , (-:-)
   ) where
 
-import BasicPrelude                 as Exports
+import BasicPrelude                 as Exports hiding (bool)
 import Control.Lens                 as Exports hiding (uncons, (.=), (<.>))
 import Control.Monad.Trans.Resource
+import Data.Bool                    as Exports
 import Data.Text
 import Safe                         as Exports (headMay, initMay, tailMay)
 
