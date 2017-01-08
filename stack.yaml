@@ -3,4 +3,4 @@ packages:
 - .
 flags: {}
 extra-deps:
-- shakers-0.0.2
+- shakers-0.0.8
