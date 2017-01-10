@@ -6,6 +6,7 @@ module Preamble.Aeson
   ( camelOptions
   , snakeOptions
   , spinalOptions
+  , maybeResult
   , eitherResult
   ) where
 
@@ -46,6 +47,12 @@ spinalOptions = defaultOptions
   , constructorTagModifier = unpack . toSpinal . unprefix . lowerHead . pack
   , omitNothingFields      = True
   }
+
+-- | Convert Aeson Result into a Maybe.
+--
+maybeResult :: Result a -> Maybe a
+maybeResult (Error _s) = Nothing
+maybeResult (Success a) = Just a
 
 -- | Convert Aeson Result into an Either.
 --
