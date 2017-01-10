@@ -6,6 +6,7 @@ module Preamble.Aeson
   ( camelOptions
   , snakeOptions
   , spinalOptions
+  , eitherResult
   ) where
 
 import Data.Aeson.Types
@@ -45,3 +46,9 @@ spinalOptions = defaultOptions
   , constructorTagModifier = unpack . toSpinal . unprefix . lowerHead . pack
   , omitNothingFields      = True
   }
+
+-- | Convert Aeson Result into an Either.
+--
+eitherResult :: Result a -> Either String a
+eitherResult (Error s) = Left s
+eitherResult (Success a) = Right a

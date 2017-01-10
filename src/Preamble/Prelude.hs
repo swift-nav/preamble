@@ -7,6 +7,7 @@ module Preamble.Prelude
   ( module Exports
   , runResourceT
   , maybe'
+  , either'
   , maybe_
   , eitherThrowIO
   , maybeThrowIO
@@ -28,6 +29,11 @@ import Safe                         as Exports (headMay, initMay, tailMay)
 --
 maybe' :: Maybe a -> b -> (a -> b) -> b
 maybe' m b a = maybe b a m
+
+-- | either with hanging function.
+--
+either' :: Either a b -> (a -> c) -> (b -> c) -> c
+either' e b a = either b a e
 
 -- | Maybe that returns () if Nothing
 --
