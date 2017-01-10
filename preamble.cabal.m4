@@ -28,7 +28,7 @@ library
   default-language:    Haskell2010
   ghc-options:         -Wall
   build-depends:       aeson
-                     , base >= 4.8 && < 4.9
+                     , base == 4.8.*
                      , basic-prelude
                      , exceptions
                      , fast-logger
