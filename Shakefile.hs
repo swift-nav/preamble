@@ -27,7 +27,7 @@ main = shakeMain $ do
 
   -- | Stack rules.
   --
-  stackRules "preamble" pats
+  stackRules pats
 
   -- | sanity
   --
