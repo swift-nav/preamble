@@ -21,6 +21,10 @@ main = shakeMain $ do
         , "src//*.hs"
         ]
 
+  -- | Haskell rules.
+  --
+  hsRules "."
+
   -- | Cabal rules.
   --
   cabalRules "." "preamble.cabal"
