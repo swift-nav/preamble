@@ -10,7 +10,9 @@ module Preamble.Prelude
   , either'
   , maybe_
   , eitherThrowIO
+  , eitherThrowIO'
   , maybeThrowIO
+  , maybeThrowIO'
   , boolThrowIO
   , textFromString
   , (-/-)
@@ -40,15 +42,25 @@ either' e b a = either b a e
 maybe_ :: Monad m => Maybe a -> (a -> m ()) -> m ()
 maybe_ = flip $ maybe $ return ()
 
+-- | Throw Exception on either error.
+--
+eitherThrowIO :: (MonadIO m, Exception e) => Either e a -> m a
+eitherThrowIO = either (liftIO . throwIO) return
+
 -- | Throw userError on either error.
 --
-eitherThrowIO :: MonadIO m => Either String a -> m a
-eitherThrowIO = either (liftIO . throwIO . userError) return
+eitherThrowIO' :: MonadIO m => Either String a -> m a
+eitherThrowIO' = either (liftIO . throwIO . userError) return
+
+-- | Throw Exception on maybe nothing.
+--
+maybeThrowIO :: (MonadIO m, Exception e) => e -> Maybe a -> m a
+maybeThrowIO e = maybe (liftIO $ throwIO e) return
 
 -- | Throw userError on maybe nothing.
 --
-maybeThrowIO :: MonadIO m => String -> Maybe a -> m a
-maybeThrowIO s = maybe (liftIO $ throwIO $ userError s) return
+maybeThrowIO' :: MonadIO m => String -> Maybe a -> m a
+maybeThrowIO' s = maybe (liftIO $ throwIO $ userError s) return
 
 -- | Throw userError on false.
 --
