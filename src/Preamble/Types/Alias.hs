@@ -4,7 +4,9 @@
 
 -- | Various alias types.
 --
-module Preamble.Types.Alias where
+module Preamble.Types.Alias
+  ( module Preamble.Types.Alias
+  ) where
 
 import Control.Monad.Catch
 import Control.Monad.Logger

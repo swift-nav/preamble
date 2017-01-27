@@ -5,7 +5,9 @@
 
 -- | Context objects for monad transformers.
 --
-module Preamble.Types.Ctx where
+module Preamble.Types.Ctx
+  ( module Preamble.Types.Ctx
+  ) where
 
 import Control.Monad.Catch
 import Control.Monad.Logger

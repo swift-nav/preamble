@@ -12,6 +12,7 @@ module Preamble.Trace
   , traceInfo
   , traceWarn
   , traceError
+  , (.=)
   ) where
 
 import           Control.Monad.Logger

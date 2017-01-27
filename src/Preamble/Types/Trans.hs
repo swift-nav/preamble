@@ -7,7 +7,10 @@
 
 -- | Monad transformer.
 --
-module Preamble.Types.Trans where
+module Preamble.Types.Trans
+  ( module Preamble.Types.Trans
+  , runResourceT
+  ) where
 
 import Control.Monad.Base
 import Control.Monad.Catch
