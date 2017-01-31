@@ -29,11 +29,14 @@ newtype TransT c m a = TransT
 
 instance MonadBase b m => MonadBase b (TransT c m) where
   liftBase = liftBaseDefault
+  {-# INLINE liftBase #-}
 
 instance MonadBaseControl b m => MonadBaseControl b (TransT c m) where
     type StM (TransT c m) a = ComposeSt (TransT c) m a
     liftBaseWith = defaultLiftBaseWith
+    {-# INLINE liftBaseWith #-}
     restoreM = defaultRestoreM
+    {-# INLINE restoreM #-}
 
 instance MonadTransControl (TransT c) where
   type StT (TransT c) a = StT (ReaderT c) a
@@ -41,10 +44,14 @@ instance MonadTransControl (TransT c) where
     liftWith $ \g ->
       liftWith $ \h ->
         f (h . g . unTransT)
+  {-# INLINE liftWith #-}
   restoreT = TransT . restoreT . restoreT
+  {-# INLINE restoreT #-}
 
 instance MonadTrans (TransT c) where
   lift = TransT . lift . lift
+  {-# INLINE lift #-}
 
 instance MonadResource m => MonadResource (TransT c m) where
   liftResourceT = lift . liftResourceT
+  {-# INLINE liftResourceT #-}
