@@ -8,5 +8,6 @@ import Preamble.Aeson   as Exports
 import Preamble.Ctx     as Exports
 import Preamble.Lens    as Exports
 import Preamble.Prelude as Exports
+import Preamble.Stats   as Exports
 import Preamble.Trace   as Exports
 import Preamble.Types   as Exports
