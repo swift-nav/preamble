@@ -19,12 +19,12 @@ library
                      , Preamble.Ctx
                      , Preamble.Lens
                      , Preamble.Prelude
+                     , Preamble.Stats
                      , Preamble.Trace
                      , Preamble.Types
                      , Preamble.Types.Alias
                      , Preamble.Types.Ctx
                      , Preamble.Types.Orphan
-                     , Preamble.Types.Stats
                      , Preamble.Types.Trans
   default-language:    Haskell2010
   ghc-options:         -Wall

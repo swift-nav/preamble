@@ -5,7 +5,8 @@
 -- | Tracing functionality around MonadLogger.
 --
 module Preamble.Trace
-  ( newStderrTrace
+  ( LogLevel (..)
+  , newStderrTrace
   , newStdoutTrace
   , nullTrace
   , traceDebug
