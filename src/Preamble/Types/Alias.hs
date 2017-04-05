@@ -19,6 +19,10 @@ import Preamble.Prelude
 --
 type Pairs = [(Text, Value)]
 
+-- | Tags
+--
+type Tags = [(Text, Text)]
+
 -- | Trace
 --
 type Trace = Loc -> LogSource -> LogLevel -> LogStr -> IO ()

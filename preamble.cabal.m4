@@ -24,6 +24,7 @@ library
                      , Preamble.Types.Alias
                      , Preamble.Types.Ctx
                      , Preamble.Types.Orphan
+                     , Preamble.Types.Stats
                      , Preamble.Types.Trans
   default-language:    Haskell2010
   ghc-options:         -Wall
@@ -36,6 +37,7 @@ library
                      , monad-control
                      , monad-logger
                      , mtl
+                     , network
                      , resourcet
                      , safe
                      , template-haskell
