@@ -12,6 +12,8 @@ module Preamble.Types.Ctx
 import Control.Monad.Catch
 import Control.Monad.Logger
 import Control.Monad.Reader
+import Network.Socket
+import Preamble.Lens
 import Preamble.Prelude
 import Preamble.Types.Alias
 
@@ -35,4 +37,27 @@ type MonadCtx c m =
   , MonadCatch m
   , MonadThrow m
   , HasCtx c
+  )
+
+-- | StatsCtx
+--
+-- Stats context.
+--
+data StatsCtx = StatsCtx
+  { _scCtx      :: Ctx
+    -- ^ Parent environment.
+  , _scSocket   :: Socket
+    -- ^ UDP Socket for statsd.
+  , _scSockAddr :: SockAddr
+    -- ^ UDP SockAddr for statsd.
+  }
+
+$(makeClassyConstraints ''StatsCtx [''HasCtx])
+
+instance HasCtx StatsCtx where
+  ctx = scCtx
+
+type MonadStatsCtx c m =
+  ( MonadCtx c m
+  , HasStatsCtx c
   )
