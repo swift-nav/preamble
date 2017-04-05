@@ -19,6 +19,7 @@ library
                      , Preamble.Ctx
                      , Preamble.Lens
                      , Preamble.Prelude
+                     , Preamble.Stats
                      , Preamble.Trace
                      , Preamble.Types
                      , Preamble.Types.Alias
@@ -36,6 +37,7 @@ library
                      , monad-control
                      , monad-logger
                      , mtl
+                     , network
                      , resourcet
                      , safe
                      , template-haskell

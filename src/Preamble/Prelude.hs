@@ -15,6 +15,7 @@ module Preamble.Prelude
   , boolThrowIO
   , textFromString
   , (-/-)
+  , (-|-)
   , (-.-)
   , (-:-)
   ) where
@@ -74,6 +75,11 @@ textFromString = pack
 --
 (-/-) :: (IsString s, Monoid s) => s -> s -> s
 (-/-) = (<>) . (<> "/")
+
+-- | <|> for IsString.
+--
+(-|-) :: (IsString s, Monoid s) => s -> s -> s
+(-|-) = (<>) . (<> "|")
 
 -- | <.> for IsString.
 --
