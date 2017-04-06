@@ -5,10 +5,9 @@
 -- | Tracing functionality around MonadLogger.
 --
 module Preamble.Trace
-  ( LogLevel (..)
-  , newStderrTrace
-  , newStdoutTrace
-  , nullTrace
+  ( newStderrLogger
+  , newStdoutLogger
+  , nullLogger
   , traceDebug
   , traceInfo
   , traceWarn
@@ -28,31 +27,28 @@ import           Preamble.Prelude       hiding (null)
 import           Preamble.Types
 import           System.Log.FastLogger
 
--- | Trace out only if gte configured level.
+-- | Log out only if gte configured level.
 --
-levelTrace :: LogLevel -> LoggerSet -> Trace
-levelTrace level ls _loc _source level' s =
+logger :: LogLevel -> LoggerSet -> Logger
+logger level ls _loc _source level' s =
   unless (level' < level) $ do
     pushLogStr ls s
     flushLogStr ls
 
 -- | New logger to stderr.
 --
-newStderrTrace :: MonadIO m => LogLevel -> m Trace
-newStderrTrace level =
-  liftIO $ levelTrace level <$> newStderrLoggerSet defaultBufSize
+newStderrLogger :: MonadIO m => LogLevel -> m Logger
+newStderrLogger level = liftIO $ logger level <$> newStderrLoggerSet defaultBufSize
 
 -- | New logger to stdout.
 --
-newStdoutTrace :: MonadIO m => LogLevel -> m Trace
-newStdoutTrace level =
-  liftIO $ levelTrace level <$> newStdoutLoggerSet defaultBufSize
+newStdoutLogger :: MonadIO m => LogLevel -> m Logger
+newStdoutLogger level = liftIO $ logger level <$> newStdoutLoggerSet defaultBufSize
 
 -- | Logger to nowhere.
 --
-nullTrace :: Trace
-nullTrace _loc _source _level _s =
-  return ()
+nullLogger :: Logger
+nullLogger _loc _source _level _s = return ()
 
 -- | Trace out event with preamble and timestamp.
 --

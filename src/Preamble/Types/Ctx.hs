@@ -25,7 +25,7 @@ import Preamble.Types.Alias
 data Ctx = Ctx
   { _cPreamble :: Pairs
     -- ^ Object to encode on every trace line.
-  , _cTrace    :: Trace
+  , _cLogger   :: Logger
     -- ^ Configurable tracing function.
   }
 

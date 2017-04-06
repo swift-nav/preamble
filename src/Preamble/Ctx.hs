@@ -20,13 +20,13 @@ import Preamble.Types
 --
 runTransT :: HasCtx c => c -> TransT c m a -> m a
 runTransT c m =
-  runReaderT (runLoggingT (unTransT m) (c ^. cTrace)) c
+  runReaderT (runLoggingT (unTransT m) (c ^. cLogger)) c
 
 -- | Run base context.
 --
-runCtx :: MonadIO m => LogLevel -> TransT Ctx m a -> m a
-runCtx level action = do
-  t <- liftIO $ newStderrTrace level
+runCtx :: MonadIO m => TransT Ctx m a -> m a
+runCtx action = do
+  t <- liftIO $ newStderrLogger LevelInfo
   runTransT (Ctx mempty t) action
 
 -- | Update base context's preamble.

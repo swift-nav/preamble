@@ -23,9 +23,9 @@ type Pairs = [(Text, Value)]
 --
 type Tags = [(Text, Text)]
 
--- | Trace
+-- | Logger
 --
-type Trace = Loc -> LogSource -> LogLevel -> LogStr -> IO ()
+type Logger = Loc -> LogSource -> LogLevel -> LogStr -> IO ()
 
 -- | MonadControl
 --
