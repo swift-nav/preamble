@@ -15,6 +15,7 @@ module Preamble.Types.Trans
 import Control.Monad.Base
 import Control.Monad.Catch
 import Control.Monad.Logger
+import Control.Monad.Random
 import Control.Monad.Reader
 import Control.Monad.Trans.Control
 import Control.Monad.Trans.Resource
@@ -55,3 +56,13 @@ instance MonadTrans (TransT c) where
 instance MonadResource m => MonadResource (TransT c m) where
   liftResourceT = lift . liftResourceT
   {-# INLINE liftResourceT #-}
+
+instance MonadRandom m => MonadRandom (TransT c m) where
+  getRandom   = lift getRandom
+  {-# INLINE getRandom #-}
+  getRandomR  = lift . getRandomR
+  {-# INLINE getRandomR #-}
+  getRandoms  = lift getRandoms
+  {-# INLINE getRandoms #-}
+  getRandomRs = lift . getRandomRs
+  {-# INLINE getRandomRs #-}

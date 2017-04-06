@@ -11,6 +11,7 @@ module Preamble.Types.Ctx
 
 import Control.Monad.Catch
 import Control.Monad.Logger
+import Control.Monad.Random
 import Control.Monad.Reader
 import Network.Socket
 import Preamble.Lens
@@ -32,6 +33,7 @@ $(makeClassy ''Ctx)
 
 type MonadCtx c m =
   ( MonadMain m
+  , MonadRandom m
   , MonadReader c m
   , MonadLogger m
   , MonadCatch m
