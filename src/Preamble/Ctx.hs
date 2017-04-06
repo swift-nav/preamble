@@ -15,6 +15,7 @@ import Network.Socket
 import Preamble.Prelude
 import Preamble.Trace
 import Preamble.Types
+import System.Environment
 
 -- | Run monad transformer, picking up logger from context.
 --
@@ -38,11 +39,12 @@ preCtx preamble action = do
 
 -- | Run stats context.
 --
-runStatsCtx :: MonadCtx c m => String -> TransT StatsCtx m a -> m a
-runStatsCtx host action = do
+runStatsCtx :: MonadCtx c m => TransT StatsCtx m a -> m a
+runStatsCtx action = do
   c <- view ctx
   s <- liftIO $ socket AF_INET Datagram defaultProtocol
-  a <- liftIO $ inet_addr host
+  h <- liftIO $ fromMaybe "127.0.0.1" <$> lookupEnv "STATS_HOST"
+  a <- liftIO $ inet_addr h
   let sa = SockAddrInet 8125 a
   runTransT (StatsCtx c s sa) action
 
