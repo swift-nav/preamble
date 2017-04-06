@@ -28,7 +28,8 @@ library
                      , Preamble.Types.Trans
   default-language:    Haskell2010
   ghc-options:         -Wall
-  build-depends:       aeson
+  build-depends:       MonadRandom
+                     , aeson
                      , base == 4.8.*
                      , basic-prelude
                      , exceptions
