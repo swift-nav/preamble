@@ -18,6 +18,7 @@ module Preamble.Prelude
   , (-|-)
   , (-.-)
   , (-:-)
+  , (=.)
   ) where
 
 import BasicPrelude as Exports hiding (bool)
@@ -90,3 +91,8 @@ textFromString = pack
 --
 (-:-) :: (IsString s, Monoid s) => s -> s -> s
 (-:-) = (<>) . (<> ":")
+
+-- | For making tags.
+--
+(=.) :: a -> b -> (a, b)
+(=.) = (,)
