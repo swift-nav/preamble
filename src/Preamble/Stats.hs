@@ -10,6 +10,8 @@ module Preamble.Stats
   , statsHistogram
   , statsTimer
   , statsSet
+  , statsIncrement
+  , statsDecrement
   ) where
 
 import Network.Socket.ByteString
@@ -42,3 +44,9 @@ statsTimer = stats "ms"
 
 statsSet :: (MonadStatsCtx c m, Show a) => Text -> a -> Tags -> m ()
 statsSet = stats "s"
+
+statsIncrement :: MonadStatsCtx c m => Text -> Tags -> m ()
+statsIncrement name = stats "c" name (1 :: Int)
+
+statsDecrement :: MonadStatsCtx c m => Text -> Tags -> m ()
+statsDecrement name = stats "c" name (-1 :: Int)
