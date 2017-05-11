@@ -11,7 +11,8 @@ module Preamble.Ctx
 
 import Control.Monad.Logger
 import Control.Monad.Reader
-import Network.Socket
+import Network.Socket            hiding (sendTo)
+import Network.Socket.ByteString
 import Preamble.Prelude
 import Preamble.Trace
 import Preamble.Types
@@ -45,8 +46,8 @@ runStatsCtx action = do
   s <- liftIO $ socket AF_INET Datagram defaultProtocol
   h <- liftIO $ fromMaybe "127.0.0.1" <$> lookupEnv "STATS_HOST"
   a <- liftIO $ inet_addr h
-  let sa = SockAddrInet 8125 a
-  runTransT (StatsCtx c s sa) action
+  let stat m = void $ sendTo s m $ SockAddrInet 8125 a
+  runTransT (StatsCtx c mempty stat) action
 
 -- | Update stats context's preamble.
 --
