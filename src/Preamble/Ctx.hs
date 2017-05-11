@@ -7,6 +7,7 @@ module Preamble.Ctx
   , preCtx
   , runStatsCtx
   , preStatsCtx
+  , labStatsCtx
   ) where
 
 import Control.Monad.Logger
@@ -54,4 +55,11 @@ runStatsCtx action = do
 preStatsCtx :: MonadStatsCtx c m => Pairs -> TransT StatsCtx m a -> m a
 preStatsCtx preamble action = do
   c <- view statsCtx <&> cPreamble <>~ preamble
+  runTransT c action
+
+-- | Update stats context's labels.
+--
+labStatsCtx :: MonadStatsCtx c m => Tags -> TransT StatsCtx m a -> m a
+labStatsCtx labels action = do
+  c <- view statsCtx <&> scLabels <>~ labels
   runTransT c action
