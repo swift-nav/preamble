@@ -13,7 +13,6 @@ import Control.Monad.Catch
 import Control.Monad.Logger
 import Control.Monad.Random
 import Control.Monad.Reader
-import Network.Socket
 import Preamble.Lens
 import Preamble.Prelude
 import Preamble.Types.Alias
@@ -46,12 +45,12 @@ type MonadCtx c m =
 -- Stats context.
 --
 data StatsCtx = StatsCtx
-  { _scCtx      :: Ctx
+  { _scCtx    :: Ctx
     -- ^ Parent environment.
-  , _scSocket   :: Socket
-    -- ^ UDP Socket for statsd.
-  , _scSockAddr :: SockAddr
-    -- ^ UDP SockAddr for statsd.
+  , _scLabels :: Tags
+    -- ^ Tags to append to every stat.
+  , _scStat   :: Stat
+    -- ^ Configurable stat function.
   }
 
 $(makeClassyConstraints ''StatsCtx [''HasCtx])

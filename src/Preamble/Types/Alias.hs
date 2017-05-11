@@ -28,6 +28,10 @@ type Tags = [(Text, Text)]
 --
 type Logger = Loc -> LogSource -> LogLevel -> LogStr -> IO ()
 
+-- | Stat
+--
+type Stat = ByteString -> IO ()
+
 -- | MonadControl
 --
 type MonadControl m =

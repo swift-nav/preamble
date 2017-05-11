@@ -14,21 +14,16 @@ module Preamble.Stats
   , statsDecrement
   ) where
 
-import Network.Socket.ByteString
 import Preamble.Prelude
 import Preamble.Types
 
-sendto :: MonadStatsCtx c m => ByteString -> m ()
-sendto metric = do
-  s <- view scSocket
-  a <- view scSockAddr
-  liftIO $ void $ sendTo s metric a
-
 stats :: (MonadStatsCtx c m, Show a) => Text -> Text -> a -> Tags -> m ()
-stats stat name value tags = do
-  let metric = name -:- show value -|- stat
-      tagged = intercalate "," $ flip map tags $ uncurry (-:-)
-  sendto $ encodeUtf8 $ bool (metric -|- "#" <> tagged) metric $ null tags
+stats metric name value tags = do
+  labels <- (<> tags) <$> view scLabels
+  let statsd = name -:- show value -|- metric
+      tagged = intercalate "," $ flip map labels $ uncurry (-:-)
+  stat <- view scStat
+  liftIO $ stat $ encodeUtf8 $ bool (statsd -|- "#" <> tagged) statsd $ null labels
 
 statsCount :: (MonadStatsCtx c m, Show a) => Text -> a -> Tags -> m ()
 statsCount = stats "c"
