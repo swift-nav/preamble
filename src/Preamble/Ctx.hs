@@ -48,7 +48,7 @@ runStatsCtx action = do
   h <- liftIO $ fromMaybe "127.0.0.1" <$> lookupEnv "STATS_HOST"
   a <- liftIO $ inet_addr h
   let stat m = void $ sendTo s m $ SockAddrInet 8125 a
-  runTransT (StatsCtx c mempty stat) action
+  runTransT (StatsCtx c mempty stat mempty) action
 
 -- | Update stats context's preamble.
 --

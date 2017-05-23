@@ -14,14 +14,16 @@ module Preamble.Stats
   , statsDecrement
   ) where
 
-import Preamble.Prelude
-import Preamble.Types
+import qualified Data.Text        as T
+import           Preamble.Prelude
+import           Preamble.Types
 
 stats :: (MonadStatsCtx c m, Show a) => Text -> Text -> a -> Tags -> m ()
 stats metric name value tags = do
   labels <- (<> tags) <$> view scLabels
-  let statsd = name -:- show value -|- metric
-      tagged = intercalate "," $ flip map labels $ uncurry (-:-)
+  prefix <- ap (bool mempty) T.null <$> view scPrefix
+  let statsd = prefix <> name -:- show value -|- metric
+      tagged = T.intercalate "," $ flip map labels $ uncurry (-:-)
   stat <- view scStat
   liftIO $ stat $ encodeUtf8 $ bool (statsd -|- "#" <> tagged) statsd $ null labels
 

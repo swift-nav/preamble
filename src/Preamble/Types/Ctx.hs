@@ -51,6 +51,8 @@ data StatsCtx = StatsCtx
     -- ^ Tags to append to every stat.
   , _scStat   :: Stat
     -- ^ Configurable stat function.
+  , _scPrefix :: Text
+    -- ^ Stats prefix.
   }
 
 $(makeClassyConstraints ''StatsCtx [''HasCtx])
