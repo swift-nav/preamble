@@ -21,7 +21,7 @@ import           Preamble.Types
 stats :: (MonadStatsCtx c m, Show a) => Text -> Text -> a -> Tags -> m ()
 stats metric name value tags = do
   labels <- (<> tags) <$> view scLabels
-  prefix <- ap (flip bool mempty) T.null <$> view scPrefix
+  prefix <- ap (`bool` mempty) T.null <$> view scPrefix
   let statsd = prefix <> name -:- show value -|- metric
       tagged = T.intercalate "," $ flip map labels $ uncurry (-:-)
   stat <- view scStat
