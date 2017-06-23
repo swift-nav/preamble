@@ -31,7 +31,7 @@ data Ctx = Ctx
 $(makeClassy ''Ctx)
 
 type MonadCtx c m =
-  ( MonadMain m
+  ( MonadControl m
   , MonadRandom m
   , MonadReader c m
   , MonadLogger m

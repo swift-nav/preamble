@@ -10,9 +10,7 @@ module Preamble.Types.Alias
 
 import Control.Monad.Catch
 import Control.Monad.Logger
-import Control.Monad.Random
 import Control.Monad.Trans.Control
-import Control.Monad.Trans.Resource
 import Data.Aeson
 import Preamble.Prelude
 
@@ -38,12 +36,4 @@ type MonadControl m =
   ( MonadBaseControl IO m
   , MonadIO m
   , MonadMask m
-  , MonadRandom m
-  )
-
--- | MonadMain
---
-type MonadMain m =
-  ( MonadControl m
-  , MonadResource m
   )
