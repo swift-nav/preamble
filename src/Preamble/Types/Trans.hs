@@ -9,6 +9,9 @@
 --
 module Preamble.Types.Trans
   ( module Preamble.Types.Trans
+  , MonadBaseControl
+  , MonadReader
+  , MonadResource
   , runResourceT
   ) where
 
