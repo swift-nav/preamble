@@ -1,3 +1,4 @@
+{-# LANGUAGE CPP               #-}
 {-# LANGUAGE FlexibleContexts  #-}
 {-# LANGUAGE NoImplicitPrelude #-}
 {-# LANGUAGE OverloadedStrings #-}
@@ -17,7 +18,11 @@ module Preamble.Trace
 
 import           Control.Monad.Logger
 import           Data.Aeson
+#if MIN_VERSION_aeson(1,0,2)
+import           Data.Aeson.Text
+#else
 import           Data.Aeson.Encode
+#endif
 import qualified Data.HashMap.Strict    as M
 import           Data.Text              hiding (singleton)
 import qualified Data.Text.Lazy         as LT
