@@ -28,26 +28,26 @@ library
                      , Preamble.Types.Trans
   default-language:    Haskell2010
   ghc-options:         -Wall
-  build-depends:       MonadRandom          >= 0.4.2
-                     , aeson                >= 0.11
-                     , base                 >= 4.8    && < 5
-                     , basic-prelude        >= 0.5.2
-                     , exceptions           >= 0.8.2
-                     , fast-logger          >= 2.4
-                     , lens                 >= 4.13
-                     , monad-control        >= 1.0
-                     , monad-logger         >= 0.3.17
-                     , mtl                  >= 2.2.1
-                     , network              >= 2.6.2
-                     , resourcet            >= 1.1.7
-                     , safe                 >= 0.3.9
-                     , template-haskell     >= 2.10
-                     , text                 >= 1.2.2
-                     , text-manipulate      >= 0.2
-                     , time                 >= 1.5
-                     , transformers-base    >= 0.4.4
-                     , unordered-containers >= 0.2.5
-                     , uuid                 >= 1.3.11
+  build-depends:       MonadRandom
+                     , aeson
+                     , base >= 4.8 && < 5
+                     , basic-prelude
+                     , exceptions
+                     , fast-logger
+                     , lens
+                     , monad-control
+                     , monad-logger
+                     , mtl
+                     , network
+                     , resourcet
+                     , safe
+                     , template-haskell
+                     , text
+                     , text-manipulate
+                     , time
+                     , transformers-base
+                     , unordered-containers
+                     , uuid
 
 executable shake-preamble
   main-is:             Shakefile.hs
