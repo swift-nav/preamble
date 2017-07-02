@@ -52,7 +52,7 @@ library
 executable shake-preamble
   main-is:             Shakefile.hs
   ghc-options:         -threaded -rtsopts -with-rtsopts=-N -Wall
-  build-depends:       base
+  build-depends:       base  >= 4.8 && < 5
                      , shakers
   default-language:    Haskell2010
 
