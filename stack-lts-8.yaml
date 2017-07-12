@@ -3,5 +3,5 @@ packages:
 - .
 flags: {}
 extra-deps:
-- shakers-0.0.26
+- shakers-0.0.27
 pvp-bounds: lower
