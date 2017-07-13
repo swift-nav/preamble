@@ -1,3 +1,4 @@
+{-# LANGUAGE CPP               #-}
 {-# LANGUAGE NoImplicitPrelude #-}
 {-# LANGUAGE OverloadedStrings #-}
 
@@ -14,6 +15,7 @@ module Preamble.Prelude
   , maybeThrowIO'
   , boolThrowIO
   , textFromString
+  , textShow
   , (-/-)
   , (-|-)
   , (-.-)
@@ -71,6 +73,14 @@ boolThrowIO = flip unless . liftIO . throwIO . userError
 --
 textFromString :: String -> Text
 textFromString = pack
+
+textShow :: Show a => a -> Text
+textShow =
+#if MIN_VERSION_basic_prelude(0,6,1)
+  textFromString . show
+#else
+  show
+#endif
 
 -- | </> for IsString.
 --

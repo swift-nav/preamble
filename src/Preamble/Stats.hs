@@ -1,4 +1,3 @@
-{-# LANGUAGE CPP               #-}
 {-# LANGUAGE FlexibleContexts  #-}
 {-# LANGUAGE NoImplicitPrelude #-}
 {-# LANGUAGE OverloadedStrings #-}
@@ -23,11 +22,7 @@ stats :: (MonadStatsCtx c m, Show a) => Text -> Text -> a -> Tags -> m ()
 stats metric name value tags = do
   labels <- (<> tags) <$> view scLabels
   prefix <- ap (`bool` mempty) T.null <$> view scPrefix
-#if MIN_VERSION_basic_prelude(0,6,1)
-  let statsd = prefix <> name -:- textFromString (show value) -|- metric
-#else
-  let statsd = prefix <> name -:- show value -|- metric
-#endif
+  let statsd = prefix <> name -:- textShow value -|- metric
       tagged = T.intercalate "," $ flip map labels $ uncurry (-:-)
   stat <- view scStat
   liftIO $ stat $ encodeUtf8 $ bool (statsd -|- "#" <> tagged) statsd $ null labels
