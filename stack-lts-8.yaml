@@ -1,6 +1,5 @@
 resolver: lts-8.24
 packages:
 - .
-pvp-bounds: lower
 extra-deps:
-- shakers-0.0.27
+- shakers-0.0.28
