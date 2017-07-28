@@ -1,7 +1,6 @@
 resolver: lts-6.35
 packages:
 - .
-flags: {}
+pvp-bounds: lower
 extra-deps:
 - shakers-0.0.27
-pvp-bounds: lower
