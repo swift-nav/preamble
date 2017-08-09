@@ -41,7 +41,7 @@ either' e b a = either b a e
 
 -- | Maybe that returns () if Nothing
 --
-maybe_ :: Monad m => Maybe a -> (a -> m ()) -> m ()
+maybe_ :: Applicative f => Maybe a -> (a -> f ()) -> f ()
 maybe_ = flip $ maybe $ pure ()
 
 -- | Throw Exception on either error.
