@@ -15,7 +15,7 @@ import Preamble.Prelude
 makeClassyConstraints :: Name -> [Name] -> DecsQ
 makeClassyConstraints name names = do
   decls <- makeClassy name
-  return $ addConstraints names decls
+  pure $ addConstraints names decls
 
 -- | Add constaints to a class.
 --

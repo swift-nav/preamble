@@ -53,7 +53,7 @@ newStdoutLogger level = liftIO $ logger level <$> newStdoutLoggerSet defaultBufS
 -- | Logger to nowhere.
 --
 nullLogger :: Logger
-nullLogger _loc _source _level _s = return ()
+nullLogger _loc _source _level _s = pure ()
 
 -- | Trace out event with preamble and timestamp.
 --

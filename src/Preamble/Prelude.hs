@@ -42,27 +42,27 @@ either' e b a = either b a e
 -- | Maybe that returns () if Nothing
 --
 maybe_ :: Monad m => Maybe a -> (a -> m ()) -> m ()
-maybe_ = flip $ maybe $ return ()
+maybe_ = flip $ maybe $ pure ()
 
 -- | Throw Exception on either error.
 --
 eitherThrowIO :: (MonadIO m, Exception e) => Either e a -> m a
-eitherThrowIO = either (liftIO . throwIO) return
+eitherThrowIO = either (liftIO . throwIO) pure
 
 -- | Throw userError on either error.
 --
 eitherThrowIO' :: MonadIO m => Either String a -> m a
-eitherThrowIO' = either (liftIO . throwIO . userError) return
+eitherThrowIO' = either (liftIO . throwIO . userError) pure
 
 -- | Throw Exception on maybe nothing.
 --
 maybeThrowIO :: (MonadIO m, Exception e) => e -> Maybe a -> m a
-maybeThrowIO e = maybe (liftIO $ throwIO e) return
+maybeThrowIO e = maybe (liftIO $ throwIO e) pure
 
 -- | Throw userError on maybe nothing.
 --
 maybeThrowIO' :: MonadIO m => String -> Maybe a -> m a
-maybeThrowIO' s = maybe (liftIO $ throwIO $ userError s) return
+maybeThrowIO' s = maybe (liftIO $ throwIO $ userError s) pure
 
 -- | Throw userError on false.
 --

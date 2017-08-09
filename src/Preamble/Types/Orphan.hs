@@ -21,7 +21,7 @@ instance ToJSON UUID where
   toJSON = toJSON . toText
 
 instance FromJSON UUID where
-  parseJSON (String s) = maybe mzero return $ fromText s
+  parseJSON (String s) = maybe mzero pure $ fromText s
   parseJSON _ = mzero
 #endif
 
