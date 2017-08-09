@@ -36,11 +36,11 @@ instance MonadBase b m => MonadBase b (TransT c m) where
   {-# INLINE liftBase #-}
 
 instance MonadBaseControl b m => MonadBaseControl b (TransT c m) where
-    type StM (TransT c m) a = ComposeSt (TransT c) m a
-    liftBaseWith = defaultLiftBaseWith
-    {-# INLINE liftBaseWith #-}
-    restoreM = defaultRestoreM
-    {-# INLINE restoreM #-}
+  type StM (TransT c m) a = ComposeSt (TransT c) m a
+  liftBaseWith = defaultLiftBaseWith
+  {-# INLINE liftBaseWith #-}
+  restoreM = defaultRestoreM
+  {-# INLINE restoreM #-}
 
 instance MonadTransControl (TransT c) where
   type StT (TransT c) a = StT (ReaderT c) a
