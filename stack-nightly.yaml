@@ -1,0 +1,5 @@
+resolver: nightly-2017-08-10
+packages:
+- .
+extra-deps:
+- shakers-0.0.31
