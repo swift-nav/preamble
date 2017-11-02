@@ -16,6 +16,7 @@ module Preamble.Prelude
   , boolThrowIO
   , textFromString
   , textShow
+  , stringShow
   , (-/-)
   , (-|-)
   , (-.-)
@@ -74,12 +75,24 @@ boolThrowIO = flip unless . liftIO . throwIO . userError
 textFromString :: String -> Text
 textFromString = pack
 
+-- | Show text with compatibility.
+--
 textShow :: Show a => a -> Text
 textShow =
 #if MIN_VERSION_basic_prelude(0,6,1)
   textFromString . show
 #else
   show
+#endif
+
+-- | Show string with compatibility.
+--
+stringShow :: Show a => a -> String
+stringShow =
+#if MIN_VERSION_basic_prelude(0,6,1)
+  show
+#else
+  textToString . show
 #endif
 
 -- | </> for IsString.
