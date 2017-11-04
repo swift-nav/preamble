@@ -2,4 +2,4 @@ resolver: nightly-2017-10-31
 packages:
 - .
 extra-deps:
-- shakers-0.0.33
+- shakers-0.0.35
