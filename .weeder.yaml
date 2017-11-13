@@ -1,0 +1,8 @@
+- package:
+  - name: preamble
+  - section:
+    - name: library
+    - message:
+      - name: Redundant build-depends entry
+      - depends: uuid
+
