@@ -47,7 +47,6 @@ library
                      , time
                      , transformers-base
                      , unordered-containers
-                     , uuid
 
 executable shake-preamble
   main-is:             Shakefile.hs
