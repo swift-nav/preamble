@@ -1,4 +1,3 @@
-{-# LANGUAGE CPP               #-}
 {-# LANGUAGE NoImplicitPrelude #-}
 
 -- | Aeson generic deriving options.
@@ -30,9 +29,6 @@ camelOptions = defaultOptions
   , constructorTagModifier = unpack . toCamel . unprefix . lowerHead . pack
   , omitNothingFields      = True
   , allNullaryToStringTag  = True
-#if MIN_VERSION_aeson(1,1,0)
-  , tagSingleConstructors  = True
-#endif
   , sumEncoding            = TaggedObject
     { tagFieldName         = "type"
     , contentsFieldName    = "data"
@@ -47,9 +43,6 @@ snakeOptions = defaultOptions
   , constructorTagModifier = unpack . toSnake . unprefix . lowerHead . pack
   , omitNothingFields      = True
   , allNullaryToStringTag  = True
-#if MIN_VERSION_aeson(1,1,0)
-  , tagSingleConstructors  = True
-#endif
   , sumEncoding            = TaggedObject
     { tagFieldName         = "type"
     , contentsFieldName    = "data"
@@ -64,9 +57,6 @@ spinalOptions = defaultOptions
   , constructorTagModifier = unpack . toSpinal . unprefix . lowerHead . pack
   , omitNothingFields      = True
   , allNullaryToStringTag  = True
-#if MIN_VERSION_aeson(1,1,0)
-  , tagSingleConstructors  = True
-#endif
   , sumEncoding            = TaggedObject
     { tagFieldName         = "type"
     , contentsFieldName    = "data"
