@@ -1,3 +1,4 @@
+{-# LANGUAGE CPP               #-}
 {-# LANGUAGE NoImplicitPrelude #-}
 
 -- | Aeson generic deriving options.
@@ -28,7 +29,10 @@ camelOptions = defaultOptions
   { fieldLabelModifier     = unpack . toCamel . unprefix . pack
   , constructorTagModifier = unpack . toCamel . unprefix . lowerHead . pack
   , omitNothingFields      = True
-  , allNullaryToStringTag  = False
+  , allNullaryToStringTag  = True
+#if MIN_VERSION_aeson(1,1,0)
+  , tagSingleConstructors  = True
+#endif
   , sumEncoding            = TaggedObject
     { tagFieldName         = "type"
     , contentsFieldName    = "data"
@@ -42,7 +46,10 @@ snakeOptions = defaultOptions
   { fieldLabelModifier     = unpack . toSnake . unprefix . pack
   , constructorTagModifier = unpack . toSnake . unprefix . lowerHead . pack
   , omitNothingFields      = True
-  , allNullaryToStringTag  = False
+  , allNullaryToStringTag  = True
+#if MIN_VERSION_aeson(1,1,0)
+  , tagSingleConstructors  = True
+#endif
   , sumEncoding            = TaggedObject
     { tagFieldName         = "type"
     , contentsFieldName    = "data"
@@ -56,7 +63,10 @@ spinalOptions = defaultOptions
   { fieldLabelModifier     = unpack . toSpinal . unprefix . pack
   , constructorTagModifier = unpack . toSpinal . unprefix . lowerHead . pack
   , omitNothingFields      = True
-  , allNullaryToStringTag  = False
+  , allNullaryToStringTag  = True
+#if MIN_VERSION_aeson(1,1,0)
+  , tagSingleConstructors  = True
+#endif
   , sumEncoding            = TaggedObject
     { tagFieldName         = "type"
     , contentsFieldName    = "data"
