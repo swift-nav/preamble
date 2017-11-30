@@ -28,6 +28,11 @@ camelOptions = defaultOptions
   { fieldLabelModifier     = unpack . toCamel . unprefix . pack
   , constructorTagModifier = unpack . toCamel . unprefix . lowerHead . pack
   , omitNothingFields      = True
+  , allNullaryToStringTag  = False
+  , sumEncoding            = TaggedObject
+    { tagFieldName         = "type"
+    , contentsFieldName    = "data"
+    }
   }
 
 -- | Derive fields with snake_case.
@@ -37,6 +42,11 @@ snakeOptions = defaultOptions
   { fieldLabelModifier     = unpack . toSnake . unprefix . pack
   , constructorTagModifier = unpack . toSnake . unprefix . lowerHead . pack
   , omitNothingFields      = True
+  , allNullaryToStringTag  = False
+  , sumEncoding            = TaggedObject
+    { tagFieldName         = "type"
+    , contentsFieldName    = "data"
+    }
   }
 
 -- | Derive fields with spinal-case.
@@ -46,6 +56,11 @@ spinalOptions = defaultOptions
   { fieldLabelModifier     = unpack . toSpinal . unprefix . pack
   , constructorTagModifier = unpack . toSpinal . unprefix . lowerHead . pack
   , omitNothingFields      = True
+  , allNullaryToStringTag  = False
+  , sumEncoding            = TaggedObject
+    { tagFieldName         = "type"
+    , contentsFieldName    = "data"
+    }
   }
 
 -- | Convert Aeson Result into a Maybe.
