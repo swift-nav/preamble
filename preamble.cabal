@@ -35,6 +35,7 @@ library
                      , exceptions
                      , fast-logger
                      , lens
+                     , lifted-base
                      , monad-control
                      , monad-logger
                      , mtl

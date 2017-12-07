@@ -24,11 +24,14 @@ module Preamble.Prelude
   , (=.)
   ) where
 
-import BasicPrelude as Exports hiding (bool)
-import Control.Lens as Exports hiding (uncons, (.=), (<.>))
-import Data.Bool    as Exports
+import BasicPrelude             as Exports hiding (bool)
+#if MIN_VERSION_basic_prelude(0,7,0)
+import Control.Exception.Lifted as Exports hiding (ioError)
+#endif
+import Control.Lens             as Exports hiding (uncons, (.=), (<.>))
+import Data.Bool                as Exports
 import Data.Text
-import Safe         as Exports (headMay, initMay, tailMay)
+import Safe                     as Exports (headMay, initMay, tailMay)
 
 -- | maybe with hanging function.
 --
