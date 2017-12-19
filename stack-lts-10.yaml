@@ -1,6 +1,5 @@
-resolver: lts-6.35
+resolver: lts-10.0
 packages:
 - .
 extra-deps:
 - shakers-0.0.38
-- foundation-0.0.10
