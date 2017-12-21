@@ -39,11 +39,6 @@ preCtx preamble action = do
   c <- view ctx <&> cPreamble <>~ preamble
   runTransT c action
 
--- | Swallow IOError's
---
-ioErrorHandle :: MonadIO m => IOError -> m ()
-ioErrorHandle _e = pure ()
-
 -- | Run stats context.
 --
 runStatsCtx :: MonadCtx c m => TransT StatsCtx m a -> m a
@@ -52,7 +47,7 @@ runStatsCtx action = do
   s <- liftIO $ socket AF_INET Datagram defaultProtocol
   h <- liftIO $ fromMaybe "127.0.0.1" <$> lookupEnv "STATS_HOST"
   a <- liftIO $ inet_addr h
-  let stat m = handle ioErrorHandle $ void $ sendTo s m $ SockAddrInet 8125 a
+  let stat m = void $ sendTo s m $ SockAddrInet 8125 a
   runTransT (StatsCtx c mempty stat mempty) action
 
 -- | Update stats context's preamble.
