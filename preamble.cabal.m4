@@ -50,13 +50,6 @@ library
                      , unordered-containers
                      , uuid
 
-executable shake-preamble
-  main-is:             Shakefile.hs
-  ghc-options:         -threaded -rtsopts -with-rtsopts=-N -Wall
-  build-depends:       base >= 4.8 && < 5
-                     , shakers
-  default-language:    Haskell2010
-
 source-repository head
   type:                git
   location:            git@github.com:swift-nav/preamble.git

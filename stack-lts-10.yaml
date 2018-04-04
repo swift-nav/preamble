@@ -1,5 +1,0 @@
-resolver: lts-10.10
-packages:
-- .
-extra-deps:
-- shakers-0.0.42
