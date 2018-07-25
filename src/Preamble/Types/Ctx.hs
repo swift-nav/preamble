@@ -10,6 +10,7 @@ module Preamble.Types.Ctx
   ) where
 
 import Control.Monad.Catch
+import Control.Monad.IO.Unlift
 import Control.Monad.Logger
 import Control.Monad.Reader
 import Preamble.Lens
@@ -36,6 +37,7 @@ type MonadCtx c m =
   , MonadMask m
   , MonadCatch m
   , MonadThrow m
+  , MonadUnliftIO m
   , HasCtx c
   )
 
