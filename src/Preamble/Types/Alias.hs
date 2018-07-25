@@ -8,10 +8,7 @@ module Preamble.Types.Alias
   ( module Preamble.Types.Alias
   ) where
 
-import Control.Monad.Catch
 import Control.Monad.Logger
-import Control.Monad.Random
-import Control.Monad.Trans.Control
 import Data.Aeson
 import Preamble.Prelude
 
@@ -30,12 +27,3 @@ type Logger = Loc -> LogSource -> LogLevel -> LogStr -> IO ()
 -- | Stat
 --
 type Stat = ByteString -> IO ()
-
--- | MonadControl
---
-type MonadControl m =
-  ( MonadBaseControl IO m
-  , MonadIO m
-  , MonadMask m
-  , MonadRandom m
-  )
