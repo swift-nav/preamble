@@ -47,6 +47,7 @@ library
                      , text-manipulate
                      , time
                      , transformers-base
+                     , unliftio-core
                      , unordered-containers
                      , uuid
 

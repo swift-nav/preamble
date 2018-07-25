@@ -12,12 +12,14 @@ module Preamble.Types.Trans
   , MonadBaseControl
   , MonadReader
   , MonadResource
+  , MonadUnliftIO
   , runResourceT
   ) where
 
 import Control.Monad.Base
 import Control.Monad.Catch
 import Control.Monad.Logger
+import Control.Monad.IO.Unlift
 import Control.Monad.Random
 import Control.Monad.Reader
 import Control.Monad.Trans.Control
@@ -59,6 +61,11 @@ instance MonadTrans (TransT c) where
 instance MonadResource m => MonadResource (TransT c m) where
   liftResourceT = lift . liftResourceT
   {-# INLINE liftResourceT #-}
+
+instance MonadUnliftIO m => MonadUnliftIO (TransT c m) where
+  askUnliftIO = TransT $ (\(UnliftIO f) -> UnliftIO $ f . unTransT)
+      <$> askUnliftIO
+  {-# INLINE askUnliftIO #-}
 
 instance MonadRandom m => MonadRandom (TransT c m) where
   getRandom   = lift getRandom
