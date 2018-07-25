@@ -18,8 +18,8 @@ module Preamble.Types.Trans
 
 import Control.Monad.Base
 import Control.Monad.Catch
-import Control.Monad.Logger
 import Control.Monad.IO.Unlift
+import Control.Monad.Logger
 import Control.Monad.Random
 import Control.Monad.Reader
 import Control.Monad.Trans.Control
