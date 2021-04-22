@@ -1,7 +1,5 @@
 # [preamble][preamble]
 
-[![Build status][travis-img]][travis]
-
 Yet another prelude. Builds on [basic-prelude][basic-prelude] with common
 capabilities for monadic contexts and logging.
 
@@ -37,8 +35,6 @@ To build and test `preamble`, the following dependencies may be required:
 [preamble]:      https://github.com/swift-nav/preamble
 [hackage]:       https://hackage.haskell.org/package/preamble
 [hackage-img]:   https://img.shields.io/hackage/v/preamble.svg?style=flat
-[travis]:        https://travis-ci.org/swift-nav/preamble
-[travis-img]:    https://img.shields.io/travis/swift-nav/preamble/master.svg?style=flat
 [deps]:          http://packdeps.haskellers.com/feed?needle=preamble
 [deps-img]:      https://img.shields.io/hackage-deps/v/preamble.svg?style=flat
 [basic-prelude]: https://github.com/snoyberg/basic-prelude
