@@ -17,7 +17,7 @@ jobs:
       uses: actions/setup-haskell@v1.1
       with:
         enable-stack: true
-        ghc-version: '8.2'
+        ghc-version: '8.8'
         stack-version: 'latest'
     - name: Build
       run:  stack build --system-ghc --test --bench --no-run-tests --no-run-benchmarks
