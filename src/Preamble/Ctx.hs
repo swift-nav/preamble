@@ -12,7 +12,7 @@ module Preamble.Ctx
 
 import Control.Monad.Logger
 import Control.Monad.Reader
-import Network.Socket            hiding (sendTo)
+import Network.Socket
 import Network.Socket.ByteString
 import Preamble.Prelude
 import Preamble.Trace
@@ -44,10 +44,15 @@ preCtx preamble action = do
 runStatsCtx :: MonadCtx c m => TransT StatsCtx m a -> m a
 runStatsCtx action = do
   c <- view ctx
-  s <- liftIO $ socket AF_INET Datagram defaultProtocol
   h <- liftIO $ fromMaybe "127.0.0.1" <$> lookupEnv "STATS_HOST"
-  a <- liftIO $ inet_addr h
-  let stat m = void $ sendTo s m $ SockAddrInet 8125 a
+  let hints = defaultHints {
+    addrFamily = AF_INET,
+    addrSocketType = Datagram,
+    addrProtocol = defaultProtocol
+  }
+  a <- liftIO $ head <$> getAddrInfo (Just hints) (Just h) (Just "8125")
+  s <- liftIO $ socket (addrFamily a) (addrSocketType a) (addrProtocol a)
+  let stat m = void $ sendTo s m (addrAddress  a)
   runTransT (StatsCtx c mempty stat mempty) action
 
 -- | Update stats context's preamble.
